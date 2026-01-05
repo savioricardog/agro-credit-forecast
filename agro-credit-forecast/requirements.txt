@@ -1,0 +1,12 @@
+pandas==2.3.3
+numpy==2.2.6
+scikit-base==0.7.8
+scikit-learn==1.4.2
+scikit-plot==0.3.7
+scipy==1.11.4
+seaborn==0.13.2
+feature_engine==1.9.3
+matplotlib==3.10.8
+xgboost==3.1.2
+lightgbm==4.6.0
+fastparquet==2025.12.0
