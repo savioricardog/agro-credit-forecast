@@ -58,7 +58,6 @@ target_col = 'Soma_Total_Maximos'
 #%%
 df_first = pd.read_parquet('FinalTable_Consolidada.parquet', engine='fastparquet')
 df_first.head(3)
-print(list(df_first.columns))
 
 #%% [markdown]
 # ## --- DENSIFIING DATASET W/ NEW FEATURES --- 
