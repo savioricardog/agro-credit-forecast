@@ -95,10 +95,6 @@ class ModelAuditor:
         choices = ['Inativos (Zero)', 'Pequenos', 'Baleias (Top 10%)']
         df['Segmento'] = np.select(conditions, choices, default='Médios')
         
-    # # Calcula WMAPE por grupo
-    # def wmape_group(self):
-    #     return np.sum(np.abs(self.df_results.groupby(f'{self.groupcol}')['Real'].sum() - self.df_results.groupby(f'{self.groupcol}')['Previsto'].sum())) / (np.sum(np.abs(self.df_results.groupby(f'{groupcol}')['Real'].sum())) + 0.001)
-
     # --- FUNCTION DE AUDITORIA DE MODELOS ---
     def auditar_modelo(self):
         import seaborn as sns
