@@ -372,6 +372,7 @@ class ModelAuditor:
             print(f'Melhores parametros: {best_params}')
 
     def plot_real_x_previsto(self):
+        print('-------------- Visão Diretor -------------- ')
         # 1. Crie um DataFrame com Real vs Previsto
         df_result = pd.DataFrame({
             'Periodo': self.X_test['periodo'], # Certifique-se que essa coluna está no X_test ou recupere do índice
@@ -415,7 +416,6 @@ class ModelAuditor:
         self.plot_erro()
         self.binning_analysis()
         self.bests()
-        # self.wmape_group()
 
 
 
@@ -549,12 +549,10 @@ def criar_features_temporais(df: pd.DataFrame,
             col_shift_name = f'valor_total_{groupcol}_shift_{shift}'
             print(f'Criando: {col_shift_name}')
 
-            # df[col_shift_name] = df.groupby(f'{groupcol}')[col_target].shift(shift) # ---> feature sumarizada mes anterior (shift (1))
             series_shift = transform.shift(shift) # ---> feature sumarizada mes anterior (shift (1))
             series_shift.name = f'{col_shift_name}' # Dá nome pra coluna
             todas_novas_features.append(series_shift)
 
-            # df[f'lag_{shift}'] = df[col_target].shift(shift)
             for rolling in rollings:
                 print(' ------------ Processando Rolling: {rolling} ------------ ')
 
@@ -597,17 +595,9 @@ def criar_features_temporais(df: pd.DataFrame,
                                              series_shift_rolling_frequencia,
                                              series_shift_rolling_flag])
 
-                # df[col_name_valor] = transform.transform(lambda x: x.shift(shift).rolling(window=rolling).mean())
-                # df[col_name_volatilidade] = transform.transform(lambda x: x.shift(shift).rolling(window=rolling).std())
-                # df[col_name_ratio] = (df[col_name_valor] / (df[col_shift_name] + aux))
-                # df[col_name_coef] = (df[col_name_volatilidade] / (df[col_name_valor] + aux))
-                # df[col_name_frequencia] = ( (df[col_shift_name] > 0).astype(int).groupby(df[f'{groupcol}']).rolling(rolling).sum().reset_index(level=0, drop=True))
-                # df[col_name_flag] = (transform.transform(lambda x: (x > 0).astype(int).shift(shift).rolling(rolling).sum()))
-
     # 3. No final, cola tudo de uma vez (MUITO mais rápido)
     df_features_novas = pd.concat(todas_novas_features, axis=1)
     df = pd.concat([df, df_features_novas], axis=1)
 
     return df.copy()
-    # return df.dropna() # Removemos o início que ficou vazio pelos lags
 
