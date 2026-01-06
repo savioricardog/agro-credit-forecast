@@ -9,7 +9,6 @@ __pycache__/
 
 # --- Dados (Se forem pesados ou sigilosos) ---
 FinalTable_Consolidada.parquet
-*.parquet
 *.csv
 *.xlsx
 # Se quiser subir uma amostra, crie uma pasta 'data/sample' e tire ela daqui

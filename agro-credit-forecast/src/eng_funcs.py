@@ -610,3 +610,4 @@ def criar_features_temporais(df: pd.DataFrame,
 
     return df.copy()
     # return df.dropna() # Removemos o início que ficou vazio pelos lags
+
